@@ -8,7 +8,9 @@ import ResponsiveNavLink, {
 import { DropdownButton } from '@/components/DropdownLink'
 import { useAuth } from '@/hooks/auth'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import HeaderDropDown from '../HeaderDropDown'
+import { viewContext } from '@/pages/dashboard'
 
 const Navigation = ({ user }) => {
     const router = useRouter()
@@ -16,11 +18,12 @@ const Navigation = ({ user }) => {
     const { logout } = useAuth()
 
     const [open, setOpen] = useState(false)
+    const { setView } = useContext(viewContext);
 
     return (
         <nav className="bg-white border-b border-gray-100">
             {/* Primary Navigation Menu */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
                     <div className="flex">
                         {/* Logo */}
@@ -30,14 +33,45 @@ const Navigation = ({ user }) => {
                             </Link>
                         </div>
 
-                        {/* Navigation Links */}
+                        <HeaderDropDown class="bg-white" text={'COMPANIES'}>
+                            <DropdownButton onClick={() => setView('Companies')}>
+                                Companies
+                            </DropdownButton>
+                        </HeaderDropDown>
+                        <HeaderDropDown text={'CONTACTS'}>
+                            <DropdownButton onClick={() => setView('Contacts')}>
+                                Contacts
+                            </DropdownButton>
+                        </HeaderDropDown>
+                        <HeaderDropDown text={'DEALS'}>
+                            <DropdownButton onClick={() => setView('Deals')}>
+                                Deals
+                            </DropdownButton>
+                        </HeaderDropDown>
+                        <HeaderDropDown text={'PARENT CO.'}>
+                            <DropdownButton onClick={() => setView('Parent Co.')}>
+                                Parent Co.
+                            </DropdownButton>
+                        </HeaderDropDown>
+                        <HeaderDropDown text={'PROSPECTS'} >
+                            <DropdownButton onClick={() => setView('Prospects')}>
+                                Prospects
+                            </DropdownButton>
+                        </HeaderDropDown>
+                        <HeaderDropDown text={'PROJECTS'} >
+                            <DropdownButton onClick={() => setView('Projects')}>
+                                Projects
+                            </DropdownButton>
+                        </HeaderDropDown>
+
+                        {/* Navigation Links
                         <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <NavLink
                                 href="/dashboard"
                                 active={router.pathname === '/dashboard'}>
                                 Dashboard
                             </NavLink>
-                        </div>
+                        </div> */}
                     </div>
 
                     {/* Settings Dropdown */}
@@ -46,7 +80,7 @@ const Navigation = ({ user }) => {
                             align="right"
                             width="48"
                             trigger={
-                                <button className="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 focus:outline-none transition duration-150 ease-in-out">
+                                <button className="flex items-center text-sm font-sans text-gray-500 hover:text-gray-700 focus:outline-none transition duration-150 ease-in-out">
                                     <div>{user?.name}</div>
 
                                     <div className="ml-1">
@@ -134,10 +168,10 @@ const Navigation = ({ user }) => {
                             </div>
 
                             <div className="ml-3">
-                                <div className="font-medium text-base text-gray-800">
+                                <div className="font-sans text-base text-gray-800">
                                     {user?.name}
                                 </div>
-                                <div className="font-medium text-sm text-gray-500">
+                                <div className="font-sans text-sm text-gray-500">
                                     {user?.email}
                                 </div>
                             </div>

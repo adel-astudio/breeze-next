@@ -6,8 +6,15 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                'sans': ['Neutra Text Alt', ...defaultTheme.fontFamily.sans]
             },
+            colors: {
+                current: 'currentColor',
+                'white': '#FFFFFF',
+                'astudio': '#C0E3E5',
+                'astudio-yellow': '#FDC936',
+                'astudio-black': '#322625'
+            }
         },
     },
     variants: {
