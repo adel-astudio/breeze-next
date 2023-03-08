@@ -2,7 +2,7 @@ import React from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
-export function SortableItem(props) {
+export function SortableHeader(props) {
     const {
         attributes,
         listeners,
@@ -17,7 +17,7 @@ export function SortableItem(props) {
     };
 
     return (
-        <th ref={setNodeRef} style={style} {...attributes} {...listeners} className="px-6 py-3 bg-astudio border text-base font-bold cursor-grabbing">
+        <th ref={setNodeRef} style={style} {...attributes} {...listeners} className="px-6 py-3 w-4 bg-astudio border text-base font-bold cursor-grabbing">
             {props.header.toUpperCase().split('_').join(' ')}
         </th>
     );

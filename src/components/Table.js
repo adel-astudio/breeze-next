@@ -14,7 +14,7 @@ import {
     horizontalListSortingStrategy
 } from '@dnd-kit/sortable';
 
-import { SortableItem } from './SortableItem';
+import { SortableHeader } from './SortableHeader';
 
 function Table({ headers, setHeaders, rows }) {
     const sensors = useSensors(
@@ -52,7 +52,7 @@ function Table({ headers, setHeaders, rows }) {
                                 <th scope="col" className="p-4 bg-astudio">
                                     <input id="checkbox-all-search" type="checkbox" className="w-4 h-4  text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500" />
                                 </th>
-                                {headers.map((header, index) => <SortableItem key={index} id={header} header={header} />)}
+                                {headers.map((header, index) => <SortableHeader key={index} id={header} header={header} />)}
                             </tr>
                         </thead>
                         <tbody>
