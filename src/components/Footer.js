@@ -149,7 +149,7 @@ function Footer(props) {
         </div>
     </div>
 
-    <section id="presscore-contact-info-widget-4" class="widget widget_presscore-contact-info-widget wf-cell wf-1-7"><div class="widget-title">Contact Us:</div><div class="widget-info">SALES<br> <a href="mailto:web@astudio.agency">web@astudio.agency</a><br>
+    <section id="presscore-contact-info-widget-4" className="widget widget_presscore-contact-info-widget wf-cell wf-1-7"><div className="widget-title">Contact Us:</div><div className="widget-info">SALES<br> <a href="mailto:web@astudio.agency">web@astudio.agency</a><br>
      <a href="tel:+971 52 221 0876">+971 52 221 0876</a>
      <br> 
      CAREERS<br> 

@@ -2,12 +2,20 @@ import AppLayout from '@/components/Layouts/AppLayout'
 import Table from '@/components/Table';
 import ToolBar from '@/components/ToolBar';
 import Head from 'next/head'
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 export const viewContext = createContext({});
 import MOCK_DATA from '../../public/MOCK_DATA.json'
 const Dashboard = () => {
     const [view, setView] = useState('Dashboard');
     const [active, setActive] = useState(0);
+    const [headers, setHeaders] = useState([]);
+    const [rows, setRows] = useState([]);
+
+    useEffect(() => {
+        setHeaders(() => Object.keys(MOCK_DATA[0]).filter(e => e !== 'id'));
+        setRows(MOCK_DATA);
+    }, []);
+
     const handleClick = e => {
         const index = parseInt(e.target.id, 0);
         if (index !== active) {
@@ -29,8 +37,8 @@ const Dashboard = () => {
 
                 <div className="p-4 border-gray-200">
                     <ul className="mx-4 flex flex-wrap -mb-px text-sm font-medium text-center">
-                        <li className="border border-white bg-astudio flex items-center" style={{ backgroundColor: active === 0 && '#E1F4F5' }} role="presentation">
-                            <button className="inline-block p-4 rounded-t-lg" onClick={handleClick} active={active === 0} id={0}>All {view}</button>
+                        <li className="border border-white bg-astudio flex items-center" style={{ backgroundColor: active === 0 ? '#E1F4F5' : '#C0E3E5' }} role="presentation">
+                            <button className="inline-block p-4 rounded-t-lg" onClick={handleClick} id={0}>All {view}</button>
                             {active === 0 &&
                                 <button className="inline-block p-4 rounded-t-lg" onClick={handleClick} id={0}>
                                     <svg className="h-4 w-4 svg-icon" viewBox="0 0 20 20">
@@ -39,8 +47,8 @@ const Dashboard = () => {
                                 </button>
                             }
                         </li>
-                        <li className="border border-white bg-astudio" style={{ backgroundColor: active === 1 && '#E1F4F5' }} role="presentation">
-                            <button className="inline-block p-4 rounded-t-lg" onClick={handleClick} active={active === 1} id={1}>Tab 2</button>
+                        <li className="border border-white bg-astudio" style={{ backgroundColor: active === 1 ? '#E1F4F5' : '#C0E3E5' }} role="presentation">
+                            <button className="inline-block p-4 rounded-t-lg" onClick={handleClick} id={1}>Tab 2</button>
                             {active === 1 &&
                                 <button className="inline-block p-4 rounded-t-lg" onClick={handleClick} id={1}>
                                     <svg className="h-4 w-4 svg-icon" viewBox="0 0 20 20">
@@ -52,8 +60,8 @@ const Dashboard = () => {
                         <li className="flex items-center">
                             <button className="inline-block rounded-t-lg">
                                 <svg className='w-10 h-10 fill-zinc-700	' viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M9 12H15" stroke="#FDC936" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M12 9L12 15" stroke="#FDC936" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M9 12H15" stroke="#FDC936" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M12 9L12 15" stroke="#FDC936" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                             </button>
                         </li>
@@ -69,7 +77,7 @@ const Dashboard = () => {
                             <div className="max-w mx-auto sm:px-6 lg:px-8">
                                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                                     <div className="bg-white">
-                                        <Table data={MOCK_DATA} />
+                                        <Table headers={headers} setHeaders={setHeaders} rows={rows} />
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +88,6 @@ const Dashboard = () => {
                             <p className="text-sm text-gray-500 ">This is some placeholder content the <strong className="font-medium text-gray-800 ">Dashboard tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
                         </div>
                     }
-
                 </div>
 
 

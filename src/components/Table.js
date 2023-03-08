@@ -1,48 +1,78 @@
 import React from 'react';
+import {
+    DndContext,
+    closestCenter,
+    KeyboardSensor,
+    PointerSensor,
+    useSensor,
+    useSensors,
+} from '@dnd-kit/core';
+import {
+    arrayMove,
+    SortableContext,
+    sortableKeyboardCoordinates,
+    horizontalListSortingStrategy
+} from '@dnd-kit/sortable';
 
-function Table({ data }) {
+import { SortableItem } from './SortableItem';
+
+function Table({ headers, setHeaders, rows }) {
+    const sensors = useSensors(
+        useSensor(PointerSensor),
+        useSensor(KeyboardSensor, {
+            coordinateGetter: sortableKeyboardCoordinates
+        })
+    );
+
+    function handleDragEnd(event) {
+        const { active, over } = event;
+        if (active.id !== over.id) {
+            setHeaders((items) => {
+                const oldIndex = items.indexOf(active.id);
+                const newIndex = items.indexOf(over.id);
+                return arrayMove(items, oldIndex, newIndex);
+            });
+        }
+    };
+
     return (
-
-        <div class="relative overflow-x-auto shadow-md max-w">
-            <table class="w-full text-sm text-left">
-                <thead class="text-xs text-gray-700 uppercase bg-astudio">
-                    <tr className='border'>
-                        <th scope="col" class="p-4">
-                            <div class="flex items-center">
-                                <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500" />
-                                <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                            </div>
-                        </th>
-                        {Object.keys(data[0]).map((header, index) => (
-                            header !== 'id' &&
-                            <th key={index} scope="col" className="px-6 py-3 border text-base font-bold">
-                                {header.toUpperCase().split('_').join(' ')}
-                            </th>
-                        ))}
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map(e => (
-                        <tr key={e.id} className="bg-white border">
-                            <td class="w-4 p-4">
-                                <div class="flex items-center">
-                                    <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500" />
-                                    <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                                </div>
-                            </td>
-                            {Object.keys(e).map((header, index) => (
-                                header !== 'id' &&
-                                <td key={index} className="w-4 p-4 border">
-                                    {e[header]}
-                                </td>
+        <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
+        >
+            <SortableContext
+                items={headers}
+                strategy={horizontalListSortingStrategy}
+            >
+                <div className="relative overflow-x-auto shadow-md max-w">
+                    <table className="w-full text-sm text-left">
+                        <thead className="text-xs text-gray-700 uppercase">
+                            <tr className='border'>
+                                <th scope="col" className="p-4 bg-astudio">
+                                    <input id="checkbox-all-search" type="checkbox" className="w-4 h-4  text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500" />
+                                </th>
+                                {headers.map((header, index) => <SortableItem key={index} id={header} header={header} />)}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {rows.map(e => (
+                                <tr key={e.id} className="bg-white border">
+                                    <td className="w-4 p-4">
+                                        <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500" />
+                                    </td>
+                                    {headers.map((header, index) => (
+                                        <td key={index} className="w-4 p-4 border">
+                                            {e[header]}
+                                        </td>
+                                    ))}
+                                </tr>
                             ))}
-                        </tr>
-                    ))}
-
-                </tbody>
-            </table>
-        </div>
-
+                        </tbody>
+                    </table>
+                </div >
+            </SortableContext>
+        </DndContext>
     );
 }
 

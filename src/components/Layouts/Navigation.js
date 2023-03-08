@@ -33,7 +33,7 @@ const Navigation = ({ user }) => {
                             </Link>
                         </div>
 
-                        <HeaderDropDown class="bg-white" text={'COMPANIES'}>
+                        <HeaderDropDown className="bg-white" text={'COMPANIES'}>
                             <DropdownButton onClick={() => setView('Companies')}>
                                 Companies
                             </DropdownButton>
