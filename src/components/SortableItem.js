@@ -17,7 +17,7 @@ export function SortableItem(props) {
     };
 
     return (
-        <th ref={setNodeRef} style={style} {...attributes} {...listeners} className="px-6 py-3 bg-astudio border text-base font-bold cursor-grab">
+        <th ref={setNodeRef} style={style} {...attributes} {...listeners} className="px-6 py-3 bg-astudio border text-base font-bold cursor-grabbing">
             {props.header.toUpperCase().split('_').join(' ')}
         </th>
     );
