@@ -19,9 +19,9 @@ export function SortableHeader(props) {
 
     return (
         <th className='bg-astudio border' >
-            <div className='flex justify-around'>
-                <div className='p-2 bg-astudio w-full text-base font-bold' ref={setNodeRef} style={style} {...attributes} {...listeners}>
-                    {props.header.toUpperCase().split('_').join(' ')}
+            <Resizable className="min-w-full min-h-full bg-astudio flex items-center p-1 justify-left" >
+                <div className='p-2 bg-astudio w-full min-h-full text-base font-bold ' ref={setNodeRef} style={style} {...attributes} {...listeners}>
+                    <span> {props.header.toUpperCase().split('_').join(' ')} </span>
                 </div>
                 <button className='p-2 bg-astudio text-center text-base rounded-full active:bg-white' name={props.header} onClick={props.sortByColumn}>
                     V
@@ -29,7 +29,8 @@ export function SortableHeader(props) {
                         <path d="m6.5,4 4-4 4,4zm0,1 4,4 4-4z" />
                     </svg> */}
                 </button>
-            </div>
+
+            </Resizable>
         </th>
     );
 }
