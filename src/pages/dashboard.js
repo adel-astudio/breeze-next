@@ -71,14 +71,12 @@ const Dashboard = () => {
                 <div id="myTabContent">
                     {active === 0 &&
                         <div className="p-4 rounded-lg bg-gray-50 " id="profile" role="tabpanel">
-                            <div className="max-w-8xl mx-auto pb-6 px-4 sm:px-6 lg:px-8">
+                            <div className="max-w-8xl pb-6 px-4 sm:px-6 lg:px-8">
                                 <ToolBar pageSize={50} />
                             </div>
-                            <div className="max-w mx-auto sm:px-6 lg:px-8">
-                                <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                                    <div className="bg-white">
-                                        <Table headers={headers} setHeaders={setHeaders} rows={rows} />
-                                    </div>
+                            <div className="max-w sm:px-6 lg:px-8">
+                                <div className="bg-white overflow-hidden shadow-sm rounded-lg">
+                                    <Table headers={headers} setHeaders={setHeaders} rows={rows} setRows={setRows} />
                                 </div>
                             </div>
                         </div>
