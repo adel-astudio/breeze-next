@@ -87,8 +87,6 @@ const Dashboard = () => {
                         </div>
                     }
                 </div>
-
-
             </AppLayout>
         </viewContext.Provider>
 

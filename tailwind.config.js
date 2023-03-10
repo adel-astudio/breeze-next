@@ -6,7 +6,8 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                'sans': ['Neutra Text Alt', ...defaultTheme.fontFamily.sans]
+                'sans': ['Neutra Text Alt', ...defaultTheme.fontFamily.sans],
+                'tf': ['Neutra Text TF', ...defaultTheme.fontFamily.serif]
             },
             colors: {
                 current: 'currentColor',

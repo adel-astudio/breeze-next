@@ -11,6 +11,7 @@ class MyDocument extends Document {
             <Html>
                 <Head>
                     <link href="https://fonts.cdnfonts.com/css/neutra-text-alt" rel="stylesheet" />
+                    <link href="https://fonts.cdnfonts.com/css/neutra-text-tf" rel="stylesheet" />
                 </Head>
                 <body className="antialiased">
                     <Main />
