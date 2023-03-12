@@ -21,8 +21,8 @@ const Table = ({ data, totalAmount }) => {
                     </tr>
                 </thead>
                 <tbody className='bg-white'>
-                    {data.map(e => (
-                        <tr className='h-10 border-b border-black'>
+                    {data.map((e, index) => (
+                        <tr key={index} className='h-10 border-b border-black'>
                             <td>
                                 {e.description}
                             </td>
