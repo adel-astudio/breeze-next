@@ -1,39 +1,57 @@
 import React from 'react';
-
+import { Page, Text, View, Document, StyleSheet, Svg, Path, Font } from '@react-pdf/renderer';
+const borderColor = '#000000'
 const Footer = () => {
+    const styles = StyleSheet.create({
+        footer: {
+            fontSize: '14px',
+            textAlign: 'center',
+            borderTopColor: borderColor,
+            borderTopWidth: 1,
+            borderBottomColor: borderColor,
+            borderBottomWidth: 1,
+            bottom: 30,
+            left: '25px',
+            right: '25px',
+            position: 'absolute',
+            marginHorizontal: 8,
+            paddingVertical: 8,
+            fontSize:'11px'
+        },
+        section: {
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+            paddingHorizontal: 8,
+            marginVertical: 8
+        },
+        header: {
+            marginTop: '20px'
+        }
+    });
     return (
-        <footer name="footer" className='border-y border-black bottom-0 mt-24'>
-            <div className='text-center my-6'>
-                Client's approval:
-                <br />
-                I hereby confirm that I accept the above quotation and that I have read, understood and accept the terms and conditions of ASTUDIO:
-            </div>
-            <div className='flex justify-around mb-4'>
-                <div>
+        <View fixed style={styles.footer}>
+            <Text>
+                {`Client's approval: I hereby confirm that I accept the above quotation and that I have read, understood and accept the terms and conditions of ASTUDIO:`}
+            </Text>
+            <View style={styles.section}>
+                <Text>
                     Approved by: ________________
-                </div>
-                <div>
+                </Text>
+                <Text>
                     Signature: ________________
-                </div>
-                <div>
+                </Text>
+                <Text>
                     Stamp: ________________
-                </div>
-            </div>
+                </Text>
+            </View>
             <br />
-            <div className='text-center mb-6'>
-                <div>
-                    Beneficiary: Araman Advertising DMCC, Bank: ADCB, Branch: Karama, Dubai, SWIFT: ADCBAEAA,
-                </div>
-                <br />
-                <div>
-                    IBAN-AED: AE610030010137826124001, IBAN-GBP: AE110030010137826348001, IBAN-USD: AE430030010137826193001.
-                </div>
-                <br />
-                <div>
-                    Company Registration No: JLT6229. Registered Office: Dubai, PO Box. 212803, United Arab Emirates | TRN: 100374728200003
-                </div>
-            </div>
-        </footer>
+            <View style={{ textAlign: 'center', paddingVertical: 4 }}>
+                <Text>
+                    {`Beneficiary: Araman Advertising DMCC, Bank: ADCB, Branch: Karama, Dubai, SWIFT: ADCBAEAA,\nIBAN-AED: AE610030010137826124001, IBAN-GBP: AE110030010137826348001,IBAN-USD: AE430030010137826193001.\nCompany Registration No: JLT6229. Registered Office: Dubai, PO Box. 212803, United Arab Emirates | TRN: 100374728200003`}
+                </Text>
+            </View>
+        </View>
     );
 };
 

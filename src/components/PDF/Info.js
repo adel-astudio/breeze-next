@@ -1,74 +1,67 @@
 import React from 'react';
+import { Page, Text, View, Document, StyleSheet, Svg, Path, Font } from '@react-pdf/renderer';
 
 const Info = () => {
+    const styles = StyleSheet.create({
+        section: {
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            fontSize: '14px',
+            marginTop: '20px'
+        },
+        space: {
+            marginTop: '20px'
+        },
+        bold: {
+            fontFamily: 'Helvetica-Bold',
+            fontWeight: 'bold'
+        }
+    });
+
     return (
         <>
-            <div name='info' className='mt-8 pr-28 flex justify-between'>
-                <div>
-                    <div className='font-bold font-tf'>
-                        CONTACT NAME
-                    </div>
+            <View name='info' style={styles.section} wrap={false}>
+                <View>
+                    <Text style={styles.bold}>CONTACT NAME</Text>
                     <br />
-                    <div className='font-sans'>
-                        Dummy
-                    </div>
-                </div>
-                <div>
-                    <div className='font-bold font-tf'>
-                        CONTACT EMAIL
-                    </div>
+                    <Text>Dummy</Text>
+                </View>
+                <View>
+                    <Text style={styles.bold}>  CONTACT EMAIL </Text>
                     <br />
-                    <div className='font-sans'>
-                        Dummy
-                    </div>
-                </div>
-                <div>
-                    <div className='font-bold font-tf'>
-                        COMPANY NAME
-                    </div>
+                    <Text>Dummy</Text>
+                </View>
+                <View>
+                    <Text style={styles.bold}> COMPANY NAME </Text>
                     <br />
-                    <div className='font-sans'>
-                        Dummy
-                    </div>
-                </div>
-                <div>
-                    <div className='font-bold font-tf'>
-                        DATE
-                    </div>
+                    <Text>Dummy</Text>
+                </View>
+                <View>
+                    <Text style={styles.bold}> DATE </Text>
                     <br />
-                    <div className='font-sans'>
-                        Dummy
-                    </div>
-                </div>
-                <div>
-                    <div className='font-bold font-tf'>
-                        QUOTE NO:
-                    </div>
+                    <Text>Dummy</Text>
+                </View>
+                <View>
+                    <Text style={styles.bold} > QUOTE NO:</Text>
                     <br />
-                    <div className='font-sans'>
-                        Dummy
-                    </div>
-                </div>
-            </div>
+                    <Text>Dummy</Text>
+                </View>
+            </View>
             <br />
-            <div name='project-title' className='mt-4'>
-                <div className='font-bold font-tf'>
-                    PROJECT TITLE
-                </div>
+            <View name='project-title' style={styles.space}>
+                <Text style={{ fontSize: '14px', ...styles.bold }}>PROJECT TITLE</Text>
                 <br />
-                <div className='font-sans'>
-                    Dummy
-                </div>
-            </div>
+                <Text style={{ fontSize: '14px' }}>Dummy</Text>
+            </View>
             <br />
-            <div name='project-deliverables' className='mt-4'>
-                <div className='font-bold font-tf'>
-                    PROJECT DELIVERABLES
-                </div>
+            <View name='project-deliverables' style={styles.space}>
+                <Text style={{ fontSize: '14px', ...styles.bold }}>PROJECT DELIVERABLES </Text>
                 <br />
-                <div className='font-sans'>
-                    Tempor nostrud veniam quis eiusmod do elit aute reprehenderit. Cupidatat mollit nisi sit et ullamco eiusmod ipsum ullamco ea commodo. Commodo Lorem aute laborum ut pariatur proident. Veniam laboris laborum consequat aliquip. Voluptate esse laborum consectetur veniam culpa magna adipisicing pariatur duis fugiat est.                </div>
-            </div>
+                <Text style={{ fontSize: '14px' }}>
+                    Tempor nostrud veniam quis eiusmod do elit aute reprehenderit. Cupidatat mollit nisi sit et ullamco eiusmod ipsum ullamco ea commodo. Commodo Lorem aute laborum ut pariatur proident. Veniam laboris laborum consequat aliquip. Voluptate esse laborum consectetur veniam culpa magna adipisicing pariatur duis fugiat est.
+                </Text>
+            </View>
         </>
     );
 };

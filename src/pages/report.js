@@ -3,40 +3,53 @@ import Header from '@/components/PDF/Header';
 import Info from '@/components/PDF/Info';
 import Table from '@/components/PDF/Table';
 import React, { useEffect, useState, useRef } from 'react';
-import REPORT_DATA from '../../public/REPORT_DATA.json';
-import { PDFExport, savePDF } from '@progress/kendo-react-pdf';
-const report = () => {
-    const contentArea = useRef(null);
-    const [data, setData] = useState([]);
-    const totalAmount = REPORT_DATA.reduce((Acc, current) => Acc + current.amount, 0);
-    useEffect(() => {
-        setData(REPORT_DATA);
-    }, [])
+import { reportData } from '../../public/REPORT_DATA.js';
+import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer/lib/react-pdf.browser.cjs.js';
+import { Page, Text, View, Document, StyleSheet, Font, Image } from '@react-pdf/renderer';
 
-    const handleExportWithFunction = () => {
-        savePDF(contentArea.current, { paperSize: "TABLOID", scale: 0.75, pageTemplate: Footer });
-    }
+Font.register({
+    family: 'Neutra Text',
+    fonts: [
+        {
+            src: '/assets/font.ttf',
+        },
+        {
+            src: '/assets/font.ttf',
+            fontWeight: 'bold',
+        }
+    ],
+});
+
+const MyDoc = () => {
+    const [data, setData] = useState([]);
+    const totalAmount = reportData.reduce((Acc, current) => Acc + current.amount, 0);
+    useEffect(() => {
+        setData(reportData);
+    }, [])
+    return <Document>
+        <Page size="TABLOID" style={{ padding: '25px', paddingBottom: 180, fontSize: '12px', fontFamily: 'Helvetica' }}>
+            <Image fixed src="/assets/bg.jpg" style={{ position: 'absolute', minWidth: '110%', minHeight: '110%', display: 'block', height: '110%', width: '110%' }} />
+            <Header />
+            <Info />
+            <Table data={data} totalAmount={totalAmount} />
+            <Footer />
+        </Page>
+    </Document>
+}
+
+const report = () => {
+    console.log(Font.getRegisteredFontFamilies(), Font.getRegisteredFonts());
 
     return (
         <>
-            <PDFExport pageTemplate={Footer}>
-                <div className="flex justify-center h-10 p-2 m-2">
-                    <button className='bg-astudio text-center w-48 h-24 active:bg-blue-200'
-                        onClick={handleExportWithFunction}>
-                        Export PDF
-                    </button>
-                </div>
-            </PDFExport>
-            <div className='p-24 overflow-hidden' ref={contentArea} id='pdf'>
-                {/* <div className='absolute -z-50 bg-astudio h-[200vh] w-96 -top-96 right-20 rotate-[-15deg]'>
-                </div> */}
-                <Header />
-                <br />
-                <Info />
-                <br />
-                <Table data={data} totalAmount={totalAmount} />
+            <div className='flex justify-center h-screen items-center bg-astudio'>
+                <PDFDownloadLink className='bg-astudio-yellow p-6 rounded border border-black' document={<MyDoc />} fileName="quote.pdf">
+                    {({ blob, url, loading, error }) =>
+                        loading ? 'Loading document...' : 'Download PDF!'
+                    }
+                </PDFDownloadLink>
             </div>
-            <Footer />
+
         </>
 
     );
