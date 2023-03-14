@@ -9,10 +9,9 @@ const styles = StyleSheet.create({
         borderBottomColor: borderColor,
         borderBottomWidth: 1,
         alignItems: 'center',
-        fontFamily: 'Helvetica-Bold',
-        fontWeight: 'bold',
         fontSize: '14px',
         paddingBottom: '10px',
+        fontWeight: 'bold'
     },
     row: {
         flexDirection: 'row',
@@ -20,7 +19,6 @@ const styles = StyleSheet.create({
         borderBottomColor: borderColor,
         borderBottomWidth: 1,
         alignItems: 'center',
-        fontStyle: 'bold',
         fontSize: '14px',
         backgroundColor: '#ffffff'
     },
@@ -52,7 +50,6 @@ const styles = StyleSheet.create({
         marginTop: '20px'
     },
     bold: {
-        fontFamily: 'Helvetica-Bold',
         fontWeight: 'bold'
     }
 });

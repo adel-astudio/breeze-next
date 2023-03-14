@@ -8,7 +8,6 @@ const Header = () => {
             flexDirection: 'row',
             justifyContent: 'space-between',
             fontSize: '24px',
-            fontFamily: 'Helvetica-Bold',
             fontWeight: 'bold',
             paddingVertical: 8
         },

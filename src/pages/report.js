@@ -5,29 +5,34 @@ import Table from '@/components/PDF/Table';
 import React, { useEffect, useState, useRef } from 'react';
 import { reportData } from '../../public/REPORT_DATA.js';
 import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer/lib/react-pdf.browser.cjs.js';
-import { Page, Text, View, Document, StyleSheet, Font, Image } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
+import { Font } from '@react-pdf/renderer/lib/react-pdf.browser.cjs.js';
+import font from "../../public/assets/font.ttf"
+import lightfont from "../../public/assets/lightFont.ttf"
 
-Font.register({
-    family: 'Neutra Text',
-    fonts: [
-        {
-            src: '/assets/font.ttf',
-        },
-        {
-            src: '/assets/font.ttf',
-            fontWeight: 'bold',
-        }
-    ],
-});
+
 
 const MyDoc = () => {
     const [data, setData] = useState([]);
     const totalAmount = reportData.reduce((Acc, current) => Acc + current.amount, 0);
+    Font.register({
+        family: 'Neutra Text',
+        format: "truetype",
+        fonts: [
+            {
+                src: lightfont,
+            },
+            {
+                src: font,
+                fontWeight: 'bold',
+              },
+        ],
+    });
     useEffect(() => {
         setData(reportData);
     }, [])
     return <Document>
-        <Page size="TABLOID" style={{ padding: '25px', paddingBottom: 180, fontSize: '12px', fontFamily: 'Helvetica' }}>
+        <Page size="TABLOID" style={{ padding: '25px', paddingBottom: 180, fontSize: '12px', fontFamily: 'Neutra Text' }}>
             <Image fixed src="/assets/bg.jpg" style={{ position: 'absolute', minWidth: '110%', minHeight: '110%', display: 'block', height: '110%', width: '110%' }} />
             <Header />
             <Info />

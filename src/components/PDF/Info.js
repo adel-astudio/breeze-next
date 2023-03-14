@@ -14,7 +14,6 @@ const Info = () => {
             marginTop: '20px'
         },
         bold: {
-            fontFamily: 'Helvetica-Bold',
             fontWeight: 'bold'
         }
     });
